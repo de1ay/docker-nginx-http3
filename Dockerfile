@@ -4,18 +4,15 @@ LABEL maintainer="Nikita Ivanov <6de1ay@gmail.com>"
 RUN  echo 'http://nl.alpinelinux.org/alpine/edge/main'>> /etc/apk/repositories \
   && echo 'http://nl.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories \
   && apk add --no-cache --virtual .build-deps \
-                gcc \
                 libc-dev \
                 make \
                 cmake \
                 openssl-dev \
-                pcre-dev \
                 zlib-dev \
                 linux-headers \
                 libxslt-dev \
                 gd-dev \
                 geoip-dev \
-                perl-dev \
                 libedit-dev \
                 mercurial \
                 bash \
@@ -27,6 +24,7 @@ RUN  echo 'http://nl.alpinelinux.org/alpine/edge/main'>> /etc/apk/repositories \
                 go \
                 rust \
                 cargo \
+  && apk add --no-cache gcc pcre-dev perl-dev \
   # Base folder
   && cd /opt \
   # Google brotli module
@@ -36,11 +34,13 @@ RUN  echo 'http://nl.alpinelinux.org/alpine/edge/main'>> /etc/apk/repositories \
   && tar xvzf nginx-1.16.1.tar.gz \
   # QUIC
   && git clone --recursive https://github.com/cloudflare/quiche \
+  # Nginx patch
   && cd /opt/nginx-1.16.1 \
   && patch -p01 < ../quiche/extras/nginx/nginx-1.16.patch \
   # Nginx build
   && ./configure \
    	--prefix=/etc/nginx \
+	--sbin-path=/usr/sbin/nginx \
 	--modules-path=/usr/lib/nginx/modules \
 	--conf-path=/etc/nginx/nginx.conf \
 	--error-log-path=/var/log/nginx/error.log \
@@ -54,4 +54,8 @@ RUN  echo 'http://nl.alpinelinux.org/alpine/edge/main'>> /etc/apk/repositories \
    	--with-quiche=../quiche \
     --add-module=../ngx_brotli \
   && make && make install \
-  && apk del .build-deps
+  # Remove build dependencies
+  && apk del .build-deps \
+  # Remove sources
+  && rm -rf /opt/quiche \
+  && rm -rf /opt/ngx_brotli
