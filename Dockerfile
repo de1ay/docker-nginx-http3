@@ -59,3 +59,5 @@ RUN  echo 'http://nl.alpinelinux.org/alpine/edge/main'>> /etc/apk/repositories \
   # Remove sources
   && rm -rf /opt/quiche \
   && rm -rf /opt/ngx_brotli
+
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
