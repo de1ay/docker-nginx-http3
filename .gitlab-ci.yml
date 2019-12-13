@@ -13,7 +13,7 @@ build:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker login -u $GITHUB_PACKAGES_USER -p $GITHUB_PACKAGES_TOKEN docker.pkg.github.com
   script:
-    - docker build -t $CI_REGISTRY_IMAGE:latest -t $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG -t $GITHUB_PACAKES_LINK:latest - t $GITHUB_PACAKES_LINK:$CI_COMMIT_TAG .
+    - docker build -t $CI_REGISTRY_IMAGE:latest -t $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG -t $GITHUB_PACAKES_LINK:latest -t $GITHUB_PACAKES_LINK:$CI_COMMIT_TAG .
     - docker push $CI_REGISTRY_IMAGE:latest
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
     - docker push $GITHUB_PACAKES_LINK:latest
