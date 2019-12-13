@@ -13,3 +13,5 @@ build:
     - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_TOKEN
   script:
     - docker build -t de1ay/nginx-http3:latest -t de1ay/nginx-http3:$CI_COMMIT_TAG .
+    - docker push de1ay/nginx-http3:latest
+    - docker push de1ay/nginx-http3:$CI_COMMIT_TAG
