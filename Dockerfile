@@ -26,7 +26,7 @@ RUN  echo 'http://nl.alpinelinux.org/alpine/edge/main'>> /etc/apk/repositories \
                 go \
                 rust \
                 cargo \
-  && apk add --no-cache gcc \
+                gcc \
   # Base folder
   && cd /opt \
   # Brotli by Google

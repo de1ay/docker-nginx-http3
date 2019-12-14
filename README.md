@@ -16,4 +16,4 @@ docker pull de1ay/nginx-http3
 
 ## Examples of use
 
-* [VueJS](https://github.com/de1ay/docker-nginx-http3/tree/master/examples/vue)
+* [VueJS](https://github.com/de1ay/docker-nginx-http3/tree/master/example/vue)

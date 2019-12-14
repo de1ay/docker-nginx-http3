@@ -3,7 +3,7 @@
 ## How to use
 
 1. Clone repository
-2. Replace examples at [nginx.conf](https://github.com/de1ay/docker-nginx-http3/blob/master/examples/vue/nginx.conf)
+2. Replace examples at [nginx.conf](https://github.com/de1ay/docker-nginx-http3/blob/master/example/vue/nginx.conf)
 3. Generate Diffie-Helman keys <br/> ```openssl dhparam -out /usr/app/ssl/dhparam.pem 2048```
 4. Obtain SSL certificates
 5. Build image <br/> ```docker build -t test:latest .```
