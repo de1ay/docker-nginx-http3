@@ -14,6 +14,6 @@ Alpine Linux Nginx with HTTP/3 and Brotli support. HTTP/3 by [Cloudflare](https:
 docker pull de1ay/nginx-http3
 ```
 
-## How to use
+## Examples of use
 
-Example will be added soon.
+* [VueJS](https://github.com/de1ay/docker-nginx-http3/tree/master/examples/vue)
