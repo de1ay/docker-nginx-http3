@@ -49,7 +49,6 @@ RUN  echo 'http://nl.alpinelinux.org/alpine/edge/main'>> /etc/apk/repositories \
     --http-log-path=/var/log/nginx/access.log \
     --pid-path=/var/run/nginx.pid \
     --lock-path=/var/run/nginx.lock \
-    --with-pcre-jit \
     --with-http_ssl_module \
     --with-http_v2_module \
     --with-http_v3_module \
@@ -63,7 +62,11 @@ RUN  echo 'http://nl.alpinelinux.org/alpine/edge/main'>> /etc/apk/repositories \
   && rm -rf /opt/quiche \
   && rm -rf /opt/ngx_brotli \
   && rm -rf /opt/nginx-1.16.1 \
-  && rm -f /opt/nginx-1.16.1.tar.gz
+  && rm -f /opt/nginx-1.16.1.tar.gz \
+  # Libs for Nginx launch
+  && apk add --no-cache \
+      pcre \
+      libgcc \
 
 STOPSIGNAL SIGTERM
 
