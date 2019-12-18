@@ -65,7 +65,7 @@ RUN  echo 'http://nl.alpinelinux.org/alpine/edge/main'>> /etc/apk/repositories \
   && rm -f /opt/nginx-1.16.1.tar.gz \
   # Libs for Nginx launch
   && apk add --no-cache \
-      pcre \
+      pcre-dev \
       libgcc
 
 STOPSIGNAL SIGTERM
